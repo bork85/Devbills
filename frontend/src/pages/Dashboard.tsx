@@ -18,13 +18,6 @@ import { getTransactionsMonthly, getTransactionsSummary } from "../services/tran
 import type { MonthLyItem, TransactionSummary } from "../types/transactions";
 import { formatCurrency } from "../utils/formatters";
 
-// use a permissive shape that mirrors what Recharts will pass to label renderers
-interface chartLabelProps2 {
-  name?: string;
-  percent?: number;
-  payload?: any;
-}
-
 const Dashboard = () => {
   const initialSummary: TransactionSummary = {
     totalIncomes: 0,

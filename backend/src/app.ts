@@ -7,9 +7,8 @@ const app:FastifyInstance = Fastify({
     logger: true
 });
 app.register(cors, {
-    origin: '*',
+    origin: 'http://localhost:5173',
     methods: ["GET", "POST", "DELETE", "PUT", "PATCH", "OPTIONS"],
-    credentials: true,
 }
     
 );
