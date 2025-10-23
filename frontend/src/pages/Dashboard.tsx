@@ -18,9 +18,11 @@ import { getTransactionsMonthly, getTransactionsSummary } from "../services/tran
 import type { MonthLyItem, TransactionSummary } from "../types/transactions";
 import { formatCurrency } from "../utils/formatters";
 
+// use a permissive shape that mirrors what Recharts will pass to label renderers
 interface chartLabelProps2 {
-  categoryName?: string;
+  name?: string;
   percent?: number;
+  payload?: any;
 }
 
 const Dashboard = () => {
@@ -51,7 +53,11 @@ const Dashboard = () => {
     }
     loadMonthlyData();
   }, [month, year]);
-  const renderPieChartLabel = ({ categoryName, percent }: chartLabelProps2): string => {
+  
+  const renderPieChartLabel = (props: any): string => {
+    const categoryName =
+      props.name ?? props.payload?.categoryName ?? props.payload?.name ?? "Categoria";
+    const percent = typeof props.percent === "number" ? props.percent : 0;
     return `${categoryName}: ${((percent ?? 0) * 100).toFixed(1)}%`;
   };
   const formatToolTip = (value: number | string): string => {

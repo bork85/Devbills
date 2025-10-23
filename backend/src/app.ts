@@ -7,8 +7,9 @@ const app:FastifyInstance = Fastify({
     logger: true
 });
 app.register(cors, {
-    origin: true,
-    methods: ["GET", "POST", "DELETE", "PUT", "PATCH", "OPTIONS"]
+    origin: '*',
+    methods: ["GET", "POST", "DELETE", "PUT", "PATCH", "OPTIONS"],
+    credentials: true,
 }
     
 );
